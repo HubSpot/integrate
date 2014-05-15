@@ -1,0 +1,267 @@
+@import "compass/css3"
+@import "compass/utilities/general/clearfix"
+
+@import "pictos/static/sass/pictos-font"
+
+$announceHeight: 130px
+
+@font-face
+    font-family: myHelveticaLight
+    src: local("Helvetica Neue Light"), local("HelveticaNeue-Light")
+
+body
+    overflow: hidden
+    margin: 0
+    +transition(1s background-color)
+    background-color: #393939
+    color: white
+
+    a
+        color: white
+        text-decoration: none
+
+    a:hover
+        text-decoration: underline
+
+pre
+    font-family: "Monaco"
+    font-size: 12px
+
+pre.function
+    text-align: left
+
+iframe#integrate-workspace
+    +box-sizing(border-box)
+    height: 100%
+    padding: $announceHeight 8px 0 8px
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+
+    border: none
+
+#integrate-announce
+    position: relative
+    +box-sizing(border-box)
+    height: $announceHeight
+    padding: 10px
+    font-family: myHelveticaLight, Verdana
+    text-align: center
+
+#integrate-status
+    font-size: 25px
+    display: none
+
+#integrate-test-cleanup
+    position: absolute
+    top: 20px
+    right: 6px
+    background: #444
+    padding: 5px 10px
+    border: 1px solid #ccc
+
+#integrate-countdown
+    position: absolute
+    bottom: 10px
+    right: 10px
+    font-size: 12px
+
+#integrate-click-viz
+    +box-shadow(0px 0px 6px 3px rgba(0, 0, 0, 0.32))
+    +transition(top 0.30s, left 0.30s)
+    display: none
+    width: 20px
+    height: 20px
+    position: absolute
+    border: 2px solid rgba(0, 0, 0, 0.65)
+    border-radius: 50px
+    color: rgba(255, 255, 255, 0)
+    font-family: Helvetica
+    padding-left: 8px
+    padding-top: 5px
+    padding-bottom: 3px
+    font-weight: normal
+    pointer-events: none
+
+    &.slow
+        +transition(top 0.95s, left 0.95s)
+
+    &.confused
+        +transition(top 3s, left 3s)
+        color: black
+
+    &.click-viz-before-mouse-down
+        +transition(top 0.20s, left 0.20s)
+
+    &.click-viz-before-mouse-down.slow
+        +transition(top 0.70s, left 0.70s)
+
+    &.click-viz-mouse-down
+        +box-shadow(0px 0px 12px 3px rgba(0, 0, 0, 0.32))
+        background-color: rgba(255, 255, 0, 0.5)
+        background-image: url("/integrate/static/images/hand.png")
+        background-repeat: no-repeat
+        background-size: 15px 18px
+        background-position: 6px 5px
+
+    &.looking
+        background-image: url("/integrate/static/images/eye.png")
+        background-size: 28px 28px
+        background-color: rgba(24, 117, 255, 0.5)
+
+    &.confused
+        color: white
+        background-color: rgba(0, 0, 0, 0.5)
+
+    &.visiting
+        +transition(top 30s, left 30s)
+        background-image: url("/integrate/static/images/steps.png")
+        //background-color: rgba(85, 0, 164, 0.5)
+        background-color: rgba(100, 100, 100, 0.5)
+        background-size: 20px 20px
+        background-repeat: no-repeat
+        background-position: 5px 5px
+        filter: FlipH
+
+        &.flip
+            -webkit-transform: scaleX(-1)
+            transform: scaleX(-1)
+            filter: FlipH
+
+#integrate-announce-log
+    border-top: 1px solid white
+    width: 100%
+    position: absolute
+    top: 200px
+    display: none
+    font-size: 10px
+    text-align: left
+
+    pre
+        font-size: 8px
+
+#integrate-progress-outer
+    padding: 3px
+    position: absolute
+    width: 98%
+    top: 0px
+    padding: 0px
+    border-left: 1px solid white
+    border-right: 1px solid white
+    border-bottom: 1px solid white
+
+#integrate-progress-inner
+    +transition(1s width)
+    background-color: white
+    height: 3px
+
+#integrate-url
+    position: absolute
+    bottom: 10px
+    left: 10px
+    font-size: 12px
+
+#integrate-announce:hover #integrate-controls
+    opacity: 1
+
+#integrate-controls
+    +transition(opacity 0.1s)
+    position: absolute
+    bottom: 10px
+    opacity: 0
+    width: 187px
+    left: 50%
+    margin-left: -105px
+    font-size: 14px
+
+    ul
+        +pie-clearfix
+
+    ul, li
+        margin: 0
+        padding: 0
+        list-style: none
+
+    li
+        display: inline
+
+        a
+            +transition(background-color .1s)
+            +border-radius(2px)
+            display: block
+            float: left
+            padding: 10px 15px
+            margin-left: 5px
+
+            &:hover
+                background-color: rgba(white, .3)
+                text-decoration: none
+
+        &.mode
+            a.active
+                background-color: rgba(white, .2)
+
+        &.playback
+            a
+                display: none
+
+                &.active
+                    display: block
+                    height: 18px
+                    width: 18px
+
+                &:before
+                    display: inline-block
+                    line-height: .1
+                    font:
+                        family: "Pictos"
+                        weight: normal
+                        size: 22px
+                    text-transform: none
+                    -webkit-font-smoothing: antialiased
+
+                &.pause:before
+                    content: "5"
+
+                &.play:before
+                    content: "4"
+
+                &.restart:before
+                    content: "1"
+
+                span
+                    display: inline-block
+                    text-indent: -9999px
+
+body.integrate-wide
+    iframe#integrate-workspace
+        position: absolute
+        width: 70%
+        height: 100%
+        left: 30%
+
+    #integrate-announce
+        position: absolute
+        top: 0px
+        left: 0px
+        width: 28%
+        text-align: left
+
+    #integrate-current-step
+        margin-top: 30px
+
+    #integrate-status
+        margin-top: 30px
+
+    #integrate-url
+        position: absolute
+        top: 0px
+        left: 10px
+        font-size: 12px
+
+    #integrate-countdown
+        position: absolute
+        top: 0px
+        right: 10px
+        font-size: 12px
