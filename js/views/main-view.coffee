@@ -38,6 +38,7 @@ class MainView extends Backbone.View
             </li>
         </ul></div>
     </div>
+    <div id="integrate-click-viz" class="confused" style="display: block; top: 20%; left: 80%;">?</div>
     """
     
     render: ->

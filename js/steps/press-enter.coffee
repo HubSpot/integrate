@@ -11,7 +11,7 @@ class PressEnterStep extends TargetedStep
         if @$target.length isnt 1
             return false
 
-        opts = {which: 13}
+        opts = {which: 13, keyCode: 13}
         utils.eventFire(workspace, @$target, "keydown", opts)
         utils.eventFire(workspace, @$target, "keyup", opts)
         utils.eventFire(workspace, @$target, "keypress", opts)
