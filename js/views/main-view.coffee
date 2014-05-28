@@ -7,7 +7,38 @@ CursorView = require "./cursor.coffee"
 ControlsView = require "./controls.coffee"
 
 class MainView extends Backbone.View
-    template: -> "<div>The template</div>"
+    template: -> """
+    <iframe id="integrate-workspace"></iframe>
+    <div id="integrate-announce">
+        <div id="integrate-status" style=""></div>
+        <div id="integrate-current-step">
+            <div class="current-announcement">
+            </div>
+            <div class="warning"></div>
+        </div>
+        <div id="integrate-countdown">
+            <span class="num"></span><span> retries until failure</span>
+        </div>
+        <div id="integrate-progress-outer">
+            <div id="integrate-progress-inner"></div>
+        </div>
+        <div id="integrate-url"></div>
+        <div id="integrate-controls"><ul>
+            <li class="mode integrate-control">
+                <a href="#slow" class="slow" title="Switch to slow mode" data-mode="slow">Slow</a>
+                <a href="#fast" class="fast active" title="Switch to fast mode" data-mode="fast">Fast</a>
+            </li>
+            <li class="playback integrate-control">
+                <a href="#pause" class="pause active" title="Pause test" data-playback="pause">
+                    <span>Pause</span>
+                </a>
+                <a href="#play" class="play" title="Resume test" data-playback="play">
+                    <span>Play</span>
+                </a>
+            </li>
+        </ul></div>
+    </div>
+    """
     
     render: ->
         @$el.prepend(@template())
