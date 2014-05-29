@@ -11,6 +11,15 @@ Watch Integrate in action here:
 
 <a href="http://backbone-todos.divshot.io/integrate_test" target="_blank">Integrate test example</a>
 
+What makes Integrate different
+------------
+
+* Integrate is designed to help you easily run and debug tests in your browser.
+* Its visual cursor makes developing new tests fast and fun.
+* Integrate's full-stack approach does not require writing testable code.
+* Its JavaScript API allows most tests to be written without callbacks.
+* It features a timing model which runs tests as fast as possible while still handling a reasonable threshold of unexpected application slowness.
+
 Quick Start
 -----------
 
