@@ -18,3 +18,6 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+.sass-cache
+stylesheets
