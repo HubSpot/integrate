@@ -1,13 +1,13 @@
 integrate
 =========
 
-library and internal app for integration testing at the UI level.
+Library and application for integration testing at the UI level.
 
 "It's like your computer is haunted by a helpful ghost!"
 
 Watch Integrate in action here:
 
-http://backbone-todos.divshot.io/integrate_test
+<a href="http://backbone-todos.divshot.io/integrate_test" target="_blank">Integrate test example</a>
 
 Test Methods
 -------------
