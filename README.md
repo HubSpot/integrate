@@ -163,24 +163,23 @@ by simulating synchronous execution.
 For example, this test will log its messages in ABC order:
 
 ```
-    test = new TestBuilder();
+test = new TestBuilder();
+test.do(function() {
+    console.log('a');
+});
+test.do(function() {
+    console.log('b');
     test.do(function() {
-        console.log('a');
-    });
-    test.do(function() {
-        console.log('b');
+        console.log('c');
         test.do(function() {
-            console.log('c');
-            test.do(function() {
-                console.log('d');
-            });
+            console.log('d');
         });
     });
-    test.do(function() {
-        console.log('e');
-    })
-    test.run();
-)
+});
+test.do(function() {
+    console.log('e');
+})
+test.run();
 ```
 
 ### test.cleanup()
