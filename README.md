@@ -142,3 +142,26 @@ delete entities created during your test, nest those steps inside of a
 test.cleanup ->
     test.click '#delete-entity'
 ```
+
+Credits
+-------
+Integrate was created with love at HubSpot. The following individuals played
+a huge role in the design and development of Integrate: 
+
+Trevor Burnham
+Matt Furtado
+Tim Finley
+
+The following early adopters were crucial in submitting bugfixes and
+improvements:
+
+Andy Aylward
+Matt Ball
+Jeff Dwyer
+Padraig Farrell
+Solomon Lutze
+Marc Neuwirth
+Ernie Park
+Jim Petr
+Talia Swartz
+Gus Vargas
