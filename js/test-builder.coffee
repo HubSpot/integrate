@@ -47,9 +47,6 @@ class TestBuilder
     assertURL: (stringOrRegex) ->
         @steps.add new AssertURLStep(stringOrRegex)
 
-    ok: ->
-        @click("#hs-fancybox-ok")
-
     pressEnter: (sel) ->
         @steps.add new PressEnterStep(sel)
 

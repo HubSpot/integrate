@@ -84,10 +84,6 @@ Simulates the user typing `text` into the input element indicated by
 Simulates the user pressing the enter key while focused on the input
 element indicated by `selector`.
 
-### test.ok()
-
-Shortcut for `test.click("#hs-fancybox-ok")`.
-
 ### test.pause()
 
 Suspend the test indefinitely - used for local debugging. Calling window.resume() continues the test.
