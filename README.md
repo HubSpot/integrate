@@ -5,6 +5,8 @@ Library and application for integration testing at the UI level.
 
 "It's like your computer is haunted by a helpful ghost!"
 
+![](https://raw.github.com/HubSpot/integrate/master/docs/integrate.gif)
+
 Watch Integrate in action here:
 
 <a href="http://backbone-todos.divshot.io/integrate_test" target="_blank">Integrate test example</a>
