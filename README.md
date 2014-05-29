@@ -1,7 +1,7 @@
 integrate
 =========
 
-library and internal app for integration testing at the UI level.
+Library and application for integration testing at the UI level.
 
 "It's like your computer is haunted by a helpful ghost!"
 
