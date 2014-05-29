@@ -1,4 +1,4 @@
-AnnouncementView = require "./announcement.coffee"
+AnnouncementView = require "./announcement.js"
 URLView = require "./url.coffee"
 ProgressView = require "./progress.coffee"
 RetriesView = require "./retries.coffee"
