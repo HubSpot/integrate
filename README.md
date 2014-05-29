@@ -11,8 +11,40 @@ Watch Integrate in action here:
 
 <a href="http://backbone-todos.divshot.io/integrate_test" target="_blank">Integrate test example</a>
 
-Test Methods
+Quick Start
+-----------
+
+You can write your first Integrate test by creating a new HTML file hosted from your app's server like this:
+
+```html
+<html>
+    <head>
+        <title>My Integrate Test</title>
+        <link href="//rawgit.com/HubSpot/integrate/master/stylesheets/style.css" rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js" type="text/javascript"></script>
+        <script src="//rawgit.com/HubSpot/integrate/master/integrate.min.js" type="text/javascript"></script>
+        <script>
+            test = new window.TestBuilder();
+            test.visit("/home");
+            test.click("#foo");
+            test.run();
+        </script>
+    </body>
+</html>
+```
+
+Documentation
 -------------
+
+This documentation assumes that your TestBuilder instance is stored as a variable called `test`, just like in the Quick Start above.
+
+### test.run()
+
+Your Integrate test will do nothing until you call `test.run()` on it. When you call `test.run()`, all of the test steps you have queued up in your TestBuilder will execute, one at a time.
 
 ### test.click(selector)
 
