@@ -5,6 +5,10 @@ library and internal app for integration testing at the UI level.
 
 "It's like your computer is haunted by a helpful ghost!"
 
+Watch Integrate in action here:
+
+http://backbone-todos.divshot.io/integrate_test
+
 Test Methods
 -------------
 
