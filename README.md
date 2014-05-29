@@ -65,9 +65,9 @@ visible, and simulates a click event on it.
 ### test.click(someFunc)
 
 ```
-test.click(($page) ->
-    $page.find("#some-selector").closest(".wrapper")
-)
+test.click(function($page) {
+    $page.find("#some-selector").closest(".wrapper");
+})
 ````
 
 `click` also can take a function which returns the jQuery object to click. The
@@ -91,9 +91,9 @@ attribute).
 assertion passes and `false` if it fails:
 
 ```
-test.assert(($page) ->
-    $page.find("#some-selector").hasClass("foo")
-)
+test.assert(function($page) {
+    $page.find("#some-selector").hasClass("foo");
+})
 ```
 
 The test will fail if the function returns `false` 40 times in a row, but
@@ -139,18 +139,21 @@ Executes `someFunc` at the current "cursor" point in the step queue. This is use
 pulling state from the DOM during the test, for example:
 
 ```
-test.do (window) ->
-    myUrl = $(window.document).find('a.some-link').attr("href")
-    test.visit (myUrl)
+test.do(function(window) {
+    myUrl = $(window.document).find('a.some-link').attr("href");
+    test.visit(myUrl);
+})
 ```
 
 It can also be used to implement `if` branching in your test:
 ```
-test.do (window)->
-    if $(window.document).find("#not-found-error").length > 0
-        test.click("#create-button")
-    else
-        test.click(".details-link")
+test.do(function(window) {
+    if ($(window.document).find("#not-found-error").length > 0) {
+        test.click("#create-button");
+    } else {
+        test.click(".details-link");
+    }
+})
 ```
 
 Your `test.do` function can call any `TestBuilder` method, including further
@@ -160,19 +163,23 @@ by simulating synchronous execution.
 For example, this test will log its messages in ABC order:
 
 ```
-hubspot.require(["hubspot.integrate.TestBuilder"], (TestBuilder) ->
-    test = new TestBuilder()
-    test.do ->
-        console.log 'a'
-    test.do ->
-        console.log 'b'
-        test.do ->
-            console.log 'c'
-            test.do ->
-                console.log 'd'
-    test.do ->
-        console.log 'e'
-    test.run()
+    test = new TestBuilder();
+    test.do(function() {
+        console.log('a');
+    });
+    test.do(function() {
+        console.log('b');
+        test.do(function() {
+            console.log('c');
+            test.do(function() {
+                console.log('d');
+            });
+        });
+    });
+    test.do(function() {
+        console.log('e');
+    })
+    test.run();
 )
 ```
 
