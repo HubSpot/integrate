@@ -165,8 +165,7 @@ hubspot.require(["hubspot.integrate.TestBuilder"], (TestBuilder) ->
 )
 ```
 
-Cleanup
--------
+### test.cleanup()
 
 To perform additional test steps after your test passes or fails, typcally to
 delete entities created during your test, nest those steps inside of a
@@ -176,6 +175,8 @@ delete entities created during your test, nest those steps inside of a
 test.cleanup ->
     test.click '#delete-entity'
 ```
+
+Note that Integrate cannot always perform requested cleanup tasks - if the browser is closed during a test, the cleanup task will not occur.
 
 Credits
 -------
