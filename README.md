@@ -7,7 +7,7 @@ library and internal app for integration testing at the UI level.
 
 Watch Integrate in action here:
 
-http://backbone-todos.divshot.io/integrate_test
+<a href="http://backbone-todos.divshot.io/integrate_test" target="_blank">Integrate test example</a>
 
 Test Methods
 -------------
