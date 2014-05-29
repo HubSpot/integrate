@@ -37,6 +37,8 @@ You can write your first Integrate test by creating a new HTML file hosted from 
 </html>
 ```
 
+The CDN links used above can of course be replaced with self-hosted versions.
+
 Documentation
 -------------
 
