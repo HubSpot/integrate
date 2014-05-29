@@ -77,6 +77,5 @@ class TestBuilder
     defocusIframe: ->
         @focusIframe()
 
-console.log 'hey'
 window.TestBuilder = TestBuilder
 exports = TestBuilder
