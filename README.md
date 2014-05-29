@@ -1,4 +1,4 @@
-integrate
+Integrate
 =========
 
 Library and application for integration testing at the UI level.
@@ -11,8 +11,51 @@ Watch Integrate in action here:
 
 <a href="http://backbone-todos.divshot.io/integrate_test" target="_blank">Integrate test example</a>
 
-Test Methods
+What makes Integrate different
+------------
+
+* Integrate is designed to help you easily run and debug tests in your browser.
+* Its visual cursor makes developing new tests fast and fun.
+* Integrate's full-stack approach does not require writing testable code.
+* Its JavaScript API allows most tests to be written without callbacks.
+* It features a timing model which runs tests as fast as possible while still handling a reasonable threshold of unexpected application slowness.
+
+Quick Start
+-----------
+
+You can write your first Integrate test by creating a new HTML file hosted from your app's server like this:
+
+```html
+<html>
+    <head>
+        <title>My Integrate Test</title>
+        <link href="//rawgit.com/HubSpot/integrate/master/stylesheets/style.css" rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js" type="text/javascript"></script>
+        <script src="//rawgit.com/HubSpot/integrate/master/integrate.min.js" type="text/javascript"></script>
+        <script>
+            test = new window.TestBuilder();
+            test.visit("/home");
+            test.click("#foo");
+            test.run();
+        </script>
+    </body>
+</html>
+```
+
+The CDN links used above can of course be replaced with self-hosted versions.
+
+Documentation
 -------------
+
+This documentation assumes that your TestBuilder instance is stored as a variable called `test`, just like in the Quick Start above.
+
+### test.run()
+
+Your Integrate test will do nothing until you call `test.run()` on it. When you call `test.run()`, all of the test steps you have queued up in your TestBuilder will execute, one at a time.
 
 ### test.click(selector)
 
@@ -22,9 +65,9 @@ visible, and simulates a click event on it.
 ### test.click(someFunc)
 
 ```
-test.click(($page) ->
-    $page.find("#some-selector").closest(".wrapper")
-)
+test.click(function($page) {
+    $page.find("#some-selector").closest(".wrapper");
+})
 ````
 
 `click` also can take a function which returns the jQuery object to click. The
@@ -48,9 +91,9 @@ attribute).
 assertion passes and `false` if it fails:
 
 ```
-test.assert(($page) ->
-    $page.find("#some-selector").hasClass("foo")
-)
+test.assert(function($page) {
+    $page.find("#some-selector").hasClass("foo");
+})
 ```
 
 The test will fail if the function returns `false` 40 times in a row, but
@@ -96,18 +139,21 @@ Executes `someFunc` at the current "cursor" point in the step queue. This is use
 pulling state from the DOM during the test, for example:
 
 ```
-test.do (window) ->
-    myUrl = $(window.document).find('a.some-link').attr("href")
-    test.visit (myUrl)
+test.do(function(window) {
+    myUrl = $(window.document).find('a.some-link').attr("href");
+    test.visit(myUrl);
+})
 ```
 
 It can also be used to implement `if` branching in your test:
 ```
-test.do (window)->
-    if $(window.document).find("#not-found-error").length > 0
-        test.click("#create-button")
-    else
-        test.click(".details-link")
+test.do(function(window) {
+    if ($(window.document).find("#not-found-error").length > 0) {
+        test.click("#create-button");
+    } else {
+        test.click(".details-link");
+    }
+})
 ```
 
 Your `test.do` function can call any `TestBuilder` method, including further
@@ -117,24 +163,26 @@ by simulating synchronous execution.
 For example, this test will log its messages in ABC order:
 
 ```
-hubspot.require(["hubspot.integrate.TestBuilder"], (TestBuilder) ->
-    test = new TestBuilder()
-    test.do ->
-        console.log 'a'
-    test.do ->
-        console.log 'b'
-        test.do ->
-            console.log 'c'
-            test.do ->
-                console.log 'd'
-    test.do ->
-        console.log 'e'
-    test.run()
-)
+test = new TestBuilder();
+test.do(function() {
+    console.log('a');
+});
+test.do(function() {
+    console.log('b');
+    test.do(function() {
+        console.log('c');
+        test.do(function() {
+            console.log('d');
+        });
+    });
+});
+test.do(function() {
+    console.log('e');
+})
+test.run();
 ```
 
-Cleanup
--------
+### test.cleanup()
 
 To perform additional test steps after your test passes or fails, typcally to
 delete entities created during your test, nest those steps inside of a
@@ -144,6 +192,8 @@ delete entities created during your test, nest those steps inside of a
 test.cleanup ->
     test.click '#delete-entity'
 ```
+
+Note that Integrate cannot always perform requested cleanup tasks - if the browser is closed during a test, the cleanup task will not occur.
 
 Credits
 -------
