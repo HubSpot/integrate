@@ -1,4 +1,4 @@
-integrate
+Integrate
 =========
 
 Library and application for integration testing at the UI level.
